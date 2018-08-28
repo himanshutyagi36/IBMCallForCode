@@ -1,0 +1,4 @@
+applications:
+- name: IBMLifeSavers
+  no-route: true
+  memory: 128M

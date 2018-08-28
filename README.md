@@ -14,6 +14,6 @@ Step 3: Then install the ImageAI library.
 
 `pip install https://github.com/OlafenwaMoses/ImageAI/releases/download/2.0.1/imageai-2.0.1-py3-none-any.whl`
 
-Step 4: Now download the pretrained model required to generate predictions. This model is based on RetinaNet (a subject of a future article). Download – RetinaNet Pretrained model (https://github.com/OlafenwaMoses/ImageAI/releases/download/1.0/resnet50_coco_best_v2.0.1.h5)
+Step 4: Now download the pretrained model required to generate predictions. This model is based on RetinaNet. Download – RetinaNet Pretrained model (https://github.com/OlafenwaMoses/ImageAI/releases/download/1.0/resnet50_coco_best_v2.0.1.h5)
 
 Step 5: Copy the downloaded file to your current working folder
