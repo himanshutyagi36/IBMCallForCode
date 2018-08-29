@@ -3,7 +3,7 @@ var app = express();
 var path = require('path');
 var formidable = require('formidable');
 var fs = require('fs');
-
+var port = 3001
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.get('/', function(req, res){
@@ -41,6 +41,15 @@ app.post('/upload', function(req, res){
   form.parse(req);
 
 });
-var server = app.listen(3000, function(){
-  console.log('Server listening on port 3000');
+
+if (process.env.VCAP_APPLICATION) {
+	//overwrite defaults
+	host = '0.0.0.0';
+	port = process.env.PORT;
+} else {
+	port = 3001;
+}
+
+var server = app.listen(port, function(){
+  console.log('Server listening on port '+port);
 });
