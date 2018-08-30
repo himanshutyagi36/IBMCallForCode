@@ -10,7 +10,10 @@
   "author": "Fady Makram",
   "license": "MIT",
   "dependencies": {
+    "cfenv": "^1.1.0",
+    "cloudant": "^1.10.0-NOTICE",
     "express": "^4.13.3",
-    "formidable": "^1.0.17"
+    "formidable": "^1.0.17",
+    "json-query": "^2.2.2"
   }
 }
