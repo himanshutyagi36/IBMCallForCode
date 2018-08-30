@@ -2,3 +2,5 @@ numpy==1.14.3
 tensorflow==1.9.0
 matplotlib==2.2.2
 pillow==5.1.0
+requests>=2.0
+cloudant==2.9.0
