@@ -5,5 +5,8 @@ file-uploader/node_modules/*
 cocoapi/*
 node-file-upload-cloudant/*
 
+<<<<<<< HEAD
 *.DS_Store
 *.pyc
+=======
+>>>>>>> 72d221ed9606e32ebaf14135ca7a340e0075bb19
