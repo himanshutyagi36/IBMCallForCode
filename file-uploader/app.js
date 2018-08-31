@@ -29,7 +29,6 @@ var cloudantCreds = getServiceCreds(appEnv, "Cloudant-kt"),
   cloudant,
   db;
 
-// var cloudantCreds = process.env.cloudantCreds;
 
 app.use(express.static(path.join(__dirname, 'public')));
 
@@ -38,10 +37,6 @@ app.get('/', function(req, res){
 });
 
 app.post('/upload', function(req, res){
-  // var stream = req.file("file").pipe(blah());
-  // stream.on("finish", function () { res.redirect("/") });
-
-  // create an incoming form object
   var form = new formidable.IncomingForm();
 
   // specify that we want to allow the user to upload multiple files in a single request
@@ -84,6 +79,21 @@ app.post('/upload', function(req, res){
   // parse the incoming request containing the form data
   form.parse(req);
 
+});
+
+// api endpoint to download the results. The python application will 
+// send a GET request, along with the names of the images to be downloaded.
+app.get('/download',function(req,res){
+  var downloadDir = path.join(__dirname, '/downloads');
+  try {
+    images.attachment.get('DurhumBullsGameNight.JPG','DurhumBullsGameNight.JPG').
+      pipe(fs.createWriteStream(path.join(downloadDir,'DurhumBullsGameNight_result.JPG')));
+    res.status('200').send('Downloaded successfully !!');
+  } catch(e) {
+    console.log(e.message);
+    res.status('500').send('Download unsuccessfull'+e.message);
+  }
+  
 });
 
 function setVcapServices() {
