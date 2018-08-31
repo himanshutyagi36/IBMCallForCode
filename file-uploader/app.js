@@ -5,7 +5,6 @@ var formidable = require('formidable');
 var fs = require('fs');
 var cfenv = require("cfenv");
 var Cloudant = require("cloudant");
-var jsonQuery = require('json-query');
 var port = 3001;
 
 var vcapLocal = null;
@@ -15,9 +14,6 @@ try {
 catch (e) {}
 var appEnvOpts = vcapLocal ? {vcap:vcapLocal} : {};
 var appEnv = cfenv.getAppEnv(appEnvOpts);
-// console.log("*****************");
-// console.log(appEnv);
-// console.log("*****************");
 
 // Retrieves service credentials for the input service
 function getServiceCreds(appEnv, serviceName) {
