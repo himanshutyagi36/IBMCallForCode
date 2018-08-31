@@ -29,7 +29,6 @@ var cloudantCreds = getServiceCreds(appEnv, "Cloudant-kt"),
   cloudant,
   db;
 
-
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.get('/', function(req, res){
