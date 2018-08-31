@@ -88,10 +88,10 @@ app.get('/download',function(req,res){
   try {
     images.attachment.get('DurhumBullsGameNight.JPG','DurhumBullsGameNight.JPG').
       pipe(fs.createWriteStream(path.join(downloadDir,'DurhumBullsGameNight_result.JPG')));
-    res.status('200').send('Downloaded successfully !!');
+    res.status('200').send('Downloaded successfully !! :D ');
   } catch(e) {
     console.log(e.message);
-    res.status('500').send('Download unsuccessfull'+e.message);
+    res.status('500').send('Download unsuccessfull !! :('+e.message);
   }
   
 });
