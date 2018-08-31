@@ -38,6 +38,8 @@ app.get('/', function(req, res){
 });
 
 app.post('/upload', function(req, res){
+  // var stream = req.file("file").pipe(blah());
+  // stream.on("finish", function () { res.redirect("/") });
 
   // create an incoming form object
   var form = new formidable.IncomingForm();
@@ -52,6 +54,21 @@ app.post('/upload', function(req, res){
   // rename it to it's orignal name
   form.on('file', function(field, file) {
     fs.rename(file.path, path.join(form.uploadDir, file.name));
+   
+    // upload to cloudant
+    fs.createReadStream(path.join(form.uploadDir, file.name)).pipe(
+      images.attachment.insert(file.name,file.name,null,'image/JPG')
+    );
+    images.list(function(err,body){
+      if(!err){
+        body.rows.forEach(function(doc){
+          console.log("-----"+JSON.stringify(doc)+"-----");
+        });
+      } else {
+        console.log(err);
+      }
+    });
+    
   });
 
   // log any errors that occur
@@ -63,7 +80,7 @@ app.post('/upload', function(req, res){
   form.on('end', function() {
     res.end('success');
   });
-
+  
   // parse the incoming request containing the form data
   form.parse(req);
 
@@ -99,5 +116,6 @@ var server = app.listen(port, function(){
     cloudant.db.list(function(err, allDbs) {
       console.log('All my databases: %s', allDbs.join(', '))
     });
+    images = cloudant.db.use('images');
   });
 });
